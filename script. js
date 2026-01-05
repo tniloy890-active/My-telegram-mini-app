@@ -1,0 +1,14 @@
+const tg = window.Telegram.WebApp;
+
+// অ্যাপটি টেলিগ্রামে পুরোপুরি রেডি করা
+tg.expand(); 
+
+// ইউজারের নাম সেট করা
+const userHeader = document.getElementById('user-name');
+if (tg.initDataUnsafe?.user) {
+    userHeader.innerText = `হ্যালো, ${tg.initDataUnsafe.user.first_name}!`;
+}
+
+function showAlert() {
+    tg.showAlert("আপনার মিনি অ্যাপটি কাজ করছে!");
+}
