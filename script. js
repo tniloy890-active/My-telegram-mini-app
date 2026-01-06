@@ -1,109 +1,48 @@
-:root {
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --accent-color: #f3ba2f;
-    --card-bg: #1c1c1e;
+const tg = window.Telegram.WebApp;
+tg.expand();
+tg.ready();
+
+let score = 0;
+const scoreDisplay = document.getElementById('score');
+const tapBtn = document.getElementById('tap-btn');
+const userName = document.getElementById('user-name');
+
+// টেলিগ্রাম থেকে ইউজারের নাম নেওয়া
+if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    userName.innerText = tg.initDataUnsafe.user.first_name;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    overflow: hidden;
-    user-select: none;
-}
+// ক্লিক ফাংশন
+tapBtn.addEventListener('click', (e) => {
+    score += 1;
+    scoreDisplay.innerText = score.toLocaleString();
+    
+    // ভাইব্রেশন
+    tg.HapticFeedback.impactOccurred('medium');
 
-#app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 20px;
-    justify-content: space-between;
-}
+    // ফ্লোটিং টেক্সট এনিমেশন (+1)
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    const plusOne = document.createElement('div');
+    plusOne.innerText = '+1';
+    plusOne.style.position = 'absolute';
+    plusOne.style.left = `${x}px`;
+    plusOne.style.top = `${y}px`;
+    plusOne.style.color = 'white';
+    plusOne.style.fontWeight = 'bold';
+    plusOne.style.animation = 'float 0.5s ease-out';
+    document.body.appendChild(plusOne);
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    setTimeout(() => plusOne.remove(), 500);
+});
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+// CSS Animation for Floating Text
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
 }
-
-#user-pfp {
-    width: 40px;
-    height: 40px;
-    background: var(--card-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rank {
-    font-size: 12px;
-    color: var(--accent-color);
-}
-
-.balance-container {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-#score {
-    font-size: 45px;
-    margin: 0;
-}
-
-.clicker-area {
-    display: flex;
-    justify-content: center;
-}
-
-.circle {
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, #f3ba2f 0%, #9e7a10 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 50px rgba(243, 186, 47, 0.3);
-    transition: transform 0.05s;
-}
-
-.circle img {
-    width: 180px;
-    pointer-events: none;
-}
-
-.circle:active {
-    transform: scale(0.95);
-}
-
-.footer-stats {
-    display: flex;
-    gap: 10px;
-}
-
-.stat-box {
-    flex: 1;
-    background: var(--card-bg);
-    padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.stat-box p {
-    margin: 0;
-    font-size: 12px;
-    opacity: 0.6;
-}
+`;
+document.head.appendChild(style);
