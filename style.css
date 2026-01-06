@@ -1,39 +1,109 @@
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #f3ba2f;
+    --card-bg: #1c1c1e;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--tg-theme-bg-color, #f4f4f9);
-    color: var(--tg-theme-text-color, #222);
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    user-select: none;
 }
 
 #app {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
 }
 
-.card {
-    background: var(--tg-theme-secondary-bg-color, #ffffff);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#user-pfp {
+    width: 40px;
+    height: 40px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank {
+    font-size: 12px;
+    color: var(--accent-color);
+}
+
+.balance-container {
     text-align: center;
-    width: 90%;
-    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-button {
-    background-color: var(--tg-theme-button-color, #2481cc);
-    color: var(--tg-theme-button-text-color, #ffffff);
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+#score {
+    font-size: 45px;
+    margin: 0;
 }
 
-button:active {
+.clicker-area {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #f3ba2f 0%, #9e7a10 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 50px rgba(243, 186, 47, 0.3);
+    transition: transform 0.05s;
+}
+
+.circle img {
+    width: 180px;
+    pointer-events: none;
+}
+
+.circle:active {
     transform: scale(0.95);
+}
+
+.footer-stats {
+    display: flex;
+    gap: 10px;
+}
+
+.stat-box {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.6;
 }
