@@ -8,12 +8,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div style="text-align: center; padding-top: 50px;">
-        <h1 id="user-greeting">হ্যালো!</h1>
-        <div style="background: #2481cc; color: white; padding: 20px; border-radius: 15px; display: inline-block;">
-            <p>আপনার স্কোর</p>
-            <h2 id="score">0</h2>
-            <button id="tap-btn" style="padding: 10px 20px; cursor: pointer;">ট্যাপ করুন</button>
+    <div id="app">
+        <div class="header">
+            <div class="user-info">
+                <div id="user-pfp">👤</div>
+                <div>
+                    <h4 id="user-name">Loading...</h4>
+                    <span class="rank">Gold League</span>
+                </div>
+            </div>
+            <button class="settings-btn">⚙️</button>
+        </div>
+
+        <div class="balance-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968260.png" width="40" alt="coin">
+            <h1 id="score">0</h1>
+        </div>
+
+        <div class="clicker-area">
+            <div class="circle" id="tap-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968260.png" alt="main-coin">
+            </div>
+        </div>
+
+        <div class="footer-stats">
+            <div class="stat-box">
+                <p>⚡ Energy</p>
+                <span>1000 / 1000</span>
+            </div>
+            <div class="stat-box">
+                <p>🚀 Multiplier</p>
+                <span>x1</span>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
