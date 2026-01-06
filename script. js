@@ -1,14 +1,109 @@
-const tg = window.Telegram.WebApp;
-
-// অ্যাপটি টেলিগ্রামে পুরোপুরি রেডি করা
-tg.expand(); 
-
-// ইউজারের নাম সেট করা
-const userHeader = document.getElementById('user-name');
-if (tg.initDataUnsafe?.user) {
-    userHeader.innerText = `হ্যালো, ${tg.initDataUnsafe.user.first_name}!`;
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #f3ba2f;
+    --card-bg: #1c1c1e;
 }
 
-function showAlert() {
-    tg.showAlert("আপনার মিনি অ্যাপটি কাজ করছে!");
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    user-select: none;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#user-pfp {
+    width: 40px;
+    height: 40px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank {
+    font-size: 12px;
+    color: var(--accent-color);
+}
+
+.balance-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#score {
+    font-size: 45px;
+    margin: 0;
+}
+
+.clicker-area {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #f3ba2f 0%, #9e7a10 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 50px rgba(243, 186, 47, 0.3);
+    transition: transform 0.05s;
+}
+
+.circle img {
+    width: 180px;
+    pointer-events: none;
+}
+
+.circle:active {
+    transform: scale(0.95);
+}
+
+.footer-stats {
+    display: flex;
+    gap: 10px;
+}
+
+.stat-box {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.6;
 }
